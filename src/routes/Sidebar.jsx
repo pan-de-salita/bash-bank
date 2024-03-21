@@ -33,14 +33,14 @@ export default function Sidebar() {
 
   function getNavClasses() {
     const baseClasses = 'w-screen p-0 md:p-7 lg:p-7 flex justify-around md:flex-col lg:flex-col md:justify-center lg:justify-center gap-4 bg-[#17171B]';
-    const width = isSidebarOpen ? 'md:w-[18%] lg:w-[20%]' : 'md:w-[5rem] lg:w-[5rem]';
+    const width = isSidebarOpen ? 'md:w-[30%] lg:w-[20%]' : 'md:w-[5rem] lg:w-[5rem]';
     const transitionClasses = 'transition-all duration-300 ease-in-out';
     return `${baseClasses} ${width} ${transitionClasses}`;
   }
 
   function getLinkClass(path, isActivePath) {
     const baseClasses = 'flex flex-col p-2 md:p-0 lg:p-0 md:flex-row lg:flex-row items-center gap-0 md:gap-4 lg:gap-4 transition-transform duration-200 ease-in-out';
-    const textColor = isActivePath(path) ? 'text-[#b248fe] hover:text-[#b248fe]' : 'text-[#A9A9AB] hover:text-white';
+    const textColor = isActivePath(path) ? 'text-white hover:text-white' : 'text-[#A9A9AB] hover:text-white';
     const translateY = isActivePath(path) ? '' : 'hover:translate-y-[-4px] hover:text-[#b248fe]';
     return `${baseClasses} ${textColor} ${translateY}`;
   }
@@ -92,9 +92,9 @@ export default function Sidebar() {
                 </Link>
                 <div>
                   {isSidebarOpen ? (
-                    <MdKeyboardDoubleArrowLeft className='cursor-pointer hidden md:block lg:block transition-transform duration-200 ease-in-out hover:translate-y-[-5px]' size={30} color='#b248fe' onClick={handleOpenSidebar} />
+                    <MdKeyboardDoubleArrowLeft className='cursor-pointer hidden md:block lg:block transition-transform duration-200 ease-in-out hover:translate-x-[-5px]' size={30} color='#b248fe' onClick={handleOpenSidebar} />
                   ) : (
-                    <MdKeyboardDoubleArrowRight className='cursor-pointer hidden md:block lg:block transition-transform duration-200 ease-in-out hover:translate-y-[5px]' size={30} color='#b248fe' onClick={handleOpenSidebar} />
+                    <MdKeyboardDoubleArrowRight className='cursor-pointer hidden md:block lg:block transition-transform duration-200 ease-in-out hover:translate-x-[5px]' size={30} color='#b248fe' onClick={handleOpenSidebar} />
                   )}
                 </div>
               </div>
