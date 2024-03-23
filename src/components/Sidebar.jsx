@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { SiGnubash } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
 import { LuGitPullRequestDraft } from "react-icons/lu";
-import { FiSend } from "react-icons/fi";
+import { SiAirtable } from "react-icons/si";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 
@@ -33,7 +33,7 @@ export default function Sidebar() {
 
   function getNavClasses() {
     const baseClasses = 'w-screen p-0 md:p-7 lg:p-7 flex justify-around md:flex-col lg:flex-col md:justify-center lg:justify-center gap-4 bg-[#17171B]';
-    const width = isSidebarOpen ? 'md:w-[30%] lg:w-[20%]' : 'md:w-[5rem] lg:w-[5rem]';
+    const width = isSidebarOpen ? 'md:w-[38%] lg:w-[20%]' : 'md:w-[5rem] lg:w-[5rem]';
     const transitionClasses = 'transition-all duration-300 ease-in-out';
     return `${baseClasses} ${width} ${transitionClasses}`;
   }
@@ -57,36 +57,36 @@ export default function Sidebar() {
         {/*  TODO: refactor using .map */}
         <ul className='w-full md:h-screen lg:h-screen flex md:flex-col lg:flex-col justify-around md:gap-8 lg:gap-8 md:pt-[3.8rem] lg:pt-[3.8rem]'>
           <li className='flex'>
+            <Link className={getLinkClass('/root/overview', isActive)} to='/root/overview'>
+              <SiAirtable className='scale-[0.7] md:scale-[1] lg:scale-[1]' size={25} />
+              <span className='sm:block text-[0.7rem] md:text-lg lg:text-xl'>
+                {isSidebarOpen ? 'Overview' : ''}
+              </span>
+            </Link>
+          </li>
+          <li className='flex'>
             <Link className={getLinkClass('/root/create-user', isActive)} to='/root/create-user'>
-              <CgProfile className='scale-[0.8] md:scale-[1] lg:scale-[1]' size={25} />
-              <span className='sm:block text-xs md:text-xl lg:text-xl'>
+              <CgProfile className='scale-[0.7] md:scale-[1] lg:scale-[1]' size={25} />
+              <span className='sm:block text-[0.7rem] md:text-lg lg:text-xl'>
                 {isSidebarOpen ? 'Create User' : ''}
               </span>
             </Link>
           </li>
           <li className='flex'>
             <Link className={getLinkClass('/root/manage-funds', isActive)} to='/root/manage-funds'>
-              <LuGitPullRequestDraft className='scale-[0.9] md:scale-[1] lg:scale-[1]' size={25} />
-              <span className='sm:block text-xs md:text-xl lg:text-xl'>
+              <LuGitPullRequestDraft className='scale-[0.7] md:scale-[1] lg:scale-[1]' size={25} />
+              <span className='sm:block text-[0.7rem] md:text-lg lg:text-xl'>
                 {isSidebarOpen ? 'Manage Funds' : ''}
               </span>
             </Link>
           </li>
-          <li className='flex'>
-            <Link className={getLinkClass('/root/transfer', isActive)} to='/root/transfer'>
-              <FiSend className='scale-[0.8] md:scale-[1] lg:scale-[1]' size={25} />
-              <span className='sm:block text-xs md:text-xl lg:text-xl'>
-                {isSidebarOpen ? 'Transfer' : ''}
-              </span>
-            </Link>
-          </li>
           <div className='h-full flex flex-col justify-between'>
-            <div></div>
+            <div className='hidden md:block lg:block'></div>
             <li>
               <div className='flex justify-between'>
                 <Link className={`${getLinkClass('/root/logout', isActive)} ${isSidebarOpen ? 'block' : 'hidden'}`} to='/root/logout'>
-                  <RiLogoutCircleRLine className='scale-[0.8] md:scale-[1] lg:scale-[1]' size={25} />
-                  <span className='sm:block text-xs md:text-xl lg:text-xl md:pr-[1rem] lg:pr-[1rem]'>
+                  <RiLogoutCircleRLine className='scale-[0.7] md:scale-[1] lg:scale-[1]' size={25} />
+                  <span className='sm:block text-[0.7rem] md:text-lg lg:text-xl md:pr-[1rem] lg:pr-[1rem]'>
                     {isSidebarOpen ? 'Logout' : ''}
                   </span>
                 </Link>

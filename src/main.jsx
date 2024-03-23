@@ -6,11 +6,11 @@ import {
 } from 'react-router-dom';
 import Login from './routes/Login';
 import Root from './routes/Root';
+import Overview from './routes/Overview';
 import CreateUser from './routes/CreateUser';
 import ManageFunds from './routes/ManageFunds';
-import './index.css'
+import './index.css';
 import { ToastContainer } from 'react-toastify';
-import Transfer from './routes/Transfer';
 
 const BankingApp = createBrowserRouter([
   {
@@ -21,10 +21,14 @@ const BankingApp = createBrowserRouter([
     path: '/root',
     element: <Root />,
     children: [
-      // remove later on
       {
         index: true,
-        element: <CreateUser />,
+        element: <Overview />,
+      },
+      {
+        index: true,
+        path: 'overview',
+        element: <Overview />,
       },
       {
         path: 'create-user',
@@ -34,10 +38,6 @@ const BankingApp = createBrowserRouter([
         path: 'manage-funds',
         element: <ManageFunds />,
       },
-      {
-        path: 'transfer',
-        element: <Transfer />,
-      }
     ],
   },
 ]);

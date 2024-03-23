@@ -26,13 +26,15 @@ export default function CreateUser() {
   const inputClasses = 'w-full border-b-2 border-solid border-b-[#17171B] border-t-0 border-l-0 border-r-0 p-[5px focus:outline-none focus:ring-0]';
 
   const validationSchema = Yup.object().shape({
-    firstNameInput: Yup.string().matches(/^[a-zA-Z ]*$/, 'Must be letters only').required('First name is required'),
-    lastNameInput: Yup.string().matches(/^[a-zA-Z ]*$/, 'Must be letters only').required('Last name is required'),
+    firstNameInput: Yup.string().matches(/^[a-zA-Z]*$/, 'Must be letters only').required('First name is required'),
+    lastNameInput: Yup.string().matches(/^[a-zA-Z-]*$/, 'Must be letters only').required('Last name is required'),
     emailInput: Yup.string().email('Invalid email').required('Email is required'),
     passwordInput: Yup.string().min(8, 'Must be at least 6 chars').required('Password is required'),
     accountBalanceInput: Yup
       .number()
-      .positive('Must be a positive number')
+      .test('is-zero-or-positive', 'Must be either 0 or a positive value', (value) => {
+        return value >= 0;
+      })
       .test('is-decimal', 'Up to 2 decimal places only', (value) => {
         const decimalPlaces = value.toString().split('.')[1];
         return !decimalPlaces || decimalPlaces.length <= 2;
@@ -70,11 +72,11 @@ export default function CreateUser() {
 
   return (
     <>
-      <div className='relative w-full h-full flex flex-col justify-center items-center'>
-        <div className='border-none md:shadow-custom-add-user lg:shadow-custom-add-user p-10 md:p-14 lg:p-14 w-full md:w-[34rem] lg:w-[40rem] overflow-y-auto'>
-          <h2 className='text-4xl md:text-5xl lg:text-5xl font-bold pb-5 pt-20 md:pt-0 lg:pt-0 self-start'>Create User</h2>
+      <div className='w-full h-full flex flex-col justify-center items-center'>
+        <div className='border-none md:shadow-custom-manage-funds lg:shadow-custom-manage-funds p-10 md:p-14 lg:p-14 w-full md:w-[34rem] lg:w-[40rem]'>
+          <h2 className='text-4xl md:text-5xl lg:text-5xl font-bold pb-5 pt-[5.9rem] md:pt-0 lg:pt-0 self-start'>Create User</h2>
           <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-            <div className='flex gap-8'>
+            <div className='flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-8'>
               <label>
                 <span className='text-lg font-[600]'>First name</span>
                 <input {...register('firstNameInput')} className={inputClasses} type='text' placeholder='Brian' required={true} autoComplete='off' />
@@ -106,7 +108,7 @@ export default function CreateUser() {
               <input {...register('accountBalanceInput')} className={inputClasses} type='text' placeholder='0.00' required={true} autoComplete='off' />
               {errors.accountBalanceInput && <p className='bg-[#17171B] text-white p-1 font-[500] italic'>{errors.accountBalanceInput.message}</p>}
             </label>
-            <div className='flex justify-end gap-3 pb-10 md:pb-0 lg:pb-0'>
+            <div className='flex justify-end gap-3'>
               <button onClick={() => reset()} className='w-[35%] mt-6 p-[0.5rem] md:p-[0.6rem] lg:p-[0.7rem] text-md font-[800] hover:translate-y-[-2px] active:translate-y-[2px]'>Cancel</button>
               <button type='submit' className='w-[35%] bg-[#b248fe] mt-6 p-[0.5rem] md:p-[0.6rem] lg:p-[0.7rem] text-md font-[800] hover:translate-y-[-2px] active:translate-y-[2px]'>Submit</button>
             </div>
