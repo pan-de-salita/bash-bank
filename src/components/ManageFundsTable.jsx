@@ -15,7 +15,7 @@ export default function ManageFundsTable({ currentUsers }) {
 
   return (
     <>
-      <Table className='w-full border-[0.4rem] border-solid border-[#17171B] shadow-custom-add-user'>
+      <Table className='w-full border-[0.4rem] border-solid border-[#17171B] md:shadow-custom-add-user lg:shadow-custom-add-user'>
         <Thead >
           <Tr>
             <Th className='p-3 text-lg'>Transaction ID</Th>
