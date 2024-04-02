@@ -84,7 +84,7 @@ export default function Sidebar() {
             <div className='hidden md:block lg:block'></div>
             <li>
               <div className='flex justify-between'>
-                <Link className={`${getLinkClass('/root/logout', isActive)} ${isSidebarOpen ? 'block' : 'hidden'}`} to='/root/logout'>
+                <Link className={`${getLinkClass('/', isActive)} ${isSidebarOpen ? 'block' : 'hidden'}`} to='/'>
                   <RiLogoutCircleRLine className='scale-[0.7] md:scale-[1] lg:scale-[1]' size={25} />
                   <span className='sm:block text-[0.7rem] md:text-lg lg:text-xl md:pr-[1rem] lg:pr-[1rem]'>
                     {isSidebarOpen ? 'Logout' : ''}

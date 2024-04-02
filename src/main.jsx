@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from 'react-router-dom';
 import Login from './routes/Login';
@@ -12,6 +13,16 @@ import ManageFunds from './routes/ManageFunds';
 import './index.css';
 import { ToastContainer } from 'react-toastify';
 
+const PrivateRoute = ({ children }) => {
+  const isAuthenticated = JSON.parse(localStorage.getItem('isLoggedIn'));
+
+  if (!isAuthenticated) {
+    return <Navigate to='/' replace />;
+  }
+
+  return children;
+}
+
 const BankingApp = createBrowserRouter([
   {
     path: '/',
@@ -19,14 +30,17 @@ const BankingApp = createBrowserRouter([
   },
   {
     path: '/root',
-    element: <Root />,
+    element: (
+      <PrivateRoute>
+        <Root />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
         element: <Overview />,
       },
       {
-        index: true,
         path: 'overview',
         element: <Overview />,
       },
